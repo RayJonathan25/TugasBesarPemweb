@@ -1,0 +1,184 @@
+<?php require_once '../middleware/is_login.php' ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/frame5.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Frame 5</title>
+</head>
+
+<body>
+    <header>
+        <img src="../assets/logoASKTM.png" class="headerFlex">
+        <form>
+            <div class="searchHeader">
+
+                <input type="text" name="jawaban" placeholder="Cari jawaban untuk pertanyaan" class="inputStyle">
+                <i class="fas fa-search iPosition"></i>
+            </div>
+        </form>
+
+        <h2 class="header" id="show-modal">Ajukan Pertanyaan</h2>
+        <img src="assets/2_1.jpg" class="profileImageHeader">
+    </header>
+
+    <hr>
+    <div class="group1">
+        <div class="frame5">
+            <div class="category" id="categories">
+                <h3><u>Mata Pelajaran</u></h3>
+                <h4><a href="">Semua Mapel</a> </h4>
+            </div>
+
+            <div class="boxBawah border-black-2">
+                <div class="header border-black-1">
+                    <img src="./assets/logo_head.png" alt="Logo head" class="header-img">
+                    <p class="title">AYO BANTU TEMAN-TEMAN <br />YANG LAIN <b>MENDAPATKAN JAWABAN !</b></p>
+                </div>
+
+                <div class="items" id="items">
+                </div>
+            </div>
+            <div class="side-right">
+                <div class="card">
+                    <div class="profile">
+                        <img src="./assets/profile.png" alt="profile">
+                        <div class="profile-data">
+                            <p><?= $_SESSION['users']['username'] ?></p>
+                            <p class="umur">19 Tahun</p>
+                        </div>
+                    </div>
+                    <div class="link-profile">
+                        <a href="#">Pertanyaan yang pernah dijawab ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="questionBox d-none" id="modal-question">
+            <div class="modal-card">
+                <div class="headers">
+                    <p>Ajukan Pertanyaan</p>
+                    <i class="fas fa-times icon-close" id="modal-close"></i>
+                </div>
+                <textarea></textarea>
+                <select>
+                    <option value="">Bahasa Sunda</option>
+                    <option value="">Bahasa Indonesia</option>
+                    <option value="">Bahasa Inggris</option>
+                </select>
+                <button>TANYAKAN PERTANYAAMU</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalQuestion = document.getElementById("modal-question");
+        const closeModal = document.getElementById("modal-close");
+        const showModal = document.getElementById("show-modal")
+
+        closeModal.addEventListener('click', () => {
+            modalQuestion.classList.add("d-none")
+        })
+
+        showModal.addEventListener("click", () => {
+            modalQuestion.classList.remove("d-none")
+        })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        function getDataQuestions(category_id) {
+            $("#items").html("");
+            let path = "/ajax/questions"
+
+            if (category_id) {
+                path += `/ajax/questions?category_id=${category_id}`;
+            }
+
+            const request = $.ajax({
+                url: path,
+                method: "get",
+                dataType: "xml",
+            });
+
+            request.done(function(response) {
+                const res = $(response).find("question");
+                for (let i = 0; i < res.length; i++) {
+                    const element = $(res[i]);
+                    const id = element.find("questionId").text();
+                    const username = element.find("username").text();
+                    const categoryName = element.find("classCategoryName").text();
+                    const questions = element.find("questions").text();
+                    const pict_profile = element.find("pic_profile").text();
+
+
+                    $("#items").append(`<div class="item border-black-1">
+                        <div class="profile">
+                            <img src="../${pict_profile}" alt="profile">
+                            <div class="profile-subject">
+                                <h2 class="name">${username}</h2>
+                                <p class="subject">${categoryName}</p>
+                            </div>
+                        </div>
+                        <div class="question">
+                            <h3>${questions}</h3>
+                        </div>
+                        <div class="button">
+                            <a href="/question?id=${id}" class="btn-white">Jawab</a>
+                        </div>
+                    </div>`);
+                }
+
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                console.log(jqXHR, textStatus);
+            });
+        }
+
+        function getdataCategory() {
+            const request = $.ajax({
+                url: "/ajax/category",
+                method: "get",
+                dataType: "xml",
+            });
+
+            request.done(function(response) {
+                const res = $(response).find("category");
+                for (let i = 0; i < res.length; i++) {
+                    const element = $(res[i]);
+                    const id = element.find("id").text();
+                    const name = element.find("name").text();
+                    const created_at = element.find("created_at").text();
+                    const updated_at = element.find("updated_at").text();
+
+
+                    $("#categories").append(`<h4 class="category" data-id="${id}">${name}</h4>`)
+                }
+
+                $("#categories .category").click(function() {
+                    getDataQuestions($(this).data("id"));
+                })
+
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                console.log(jqXHR, textStatus);
+            });
+        }
+
+
+
+        $(document).ready(function() {
+            getdataCategory();
+            getDataQuestions();
+        })
+    </script>
+</body>
+
+</html>

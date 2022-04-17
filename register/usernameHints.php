@@ -1,6 +1,6 @@
 <?php
 	
-	include('koneksi.php');
+	include('../db/index.php');
 	
 	$existName = [];
 	
