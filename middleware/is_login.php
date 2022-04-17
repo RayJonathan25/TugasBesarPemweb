@@ -2,5 +2,6 @@
 session_start();
 
 if (!isset($_SESSION['users'])) {
-    header("Location: /login");
+    return header('Location: /login');
+    exit(0);
 }

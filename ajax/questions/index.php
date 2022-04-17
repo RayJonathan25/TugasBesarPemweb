@@ -7,10 +7,9 @@ function xmlConvert($datas, $parent_name, $name)
 {
     $stringBased = "<$parent_name>";
     foreach ($datas as $data) {
-
         $stringBased .= "<$name>";
         foreach ($data as $key => $value) {
-            $stringBased .=  "<$key>$value</$key>";
+            $stringBased .= "<$key>$value</$key>";
         }
         $stringBased .= "</$name>";
     }
@@ -18,9 +17,10 @@ function xmlConvert($datas, $parent_name, $name)
     return $stringBased;
 }
 
-function get($connection, $category_id = NULL)
+function get($connection, $category_id = null)
 {
-    $query = "SELECT questions.id as questionId,questions,category_id,user_id,questions.created_at as questionsCreatedAt,questions.updated_at as questionsUpdatedAt,id_users,username,email,biodata,pic_profile,users.created_at as userCreatedAt,users.updated_at as userUpdatedAt,class_category.id as classCategoryId,class_category.name as classCategoryName FROM questions JOIN users ON questions.user_id=users.id_users JOIN class_category ON questions.category_id=class_category.id";
+    $query =
+        'SELECT questions.id as questionId,questions,category_id,user_id,questions.created_at as questionsCreatedAt,questions.updated_at as questionsUpdatedAt,users.id as id_users,username,email,biodata,pic_profile,users.created_at as userCreatedAt,users.updated_at as userUpdatedAt,categories.id as classCategoryId,categories.name as classCategoryName FROM questions JOIN users ON questions.user_id=users.id JOIN categories ON questions.category_id=categories.id';
 
     if ($category_id) {
         $query .= " WHERE category_id = '$category_id'";
@@ -31,9 +31,13 @@ function get($connection, $category_id = NULL)
     while ($data = mysqli_fetch_assoc($response)) {
         $allData[] = $data;
     }
-    $status = "<status>success</status>";
-    $returnResponse = "<response>" . $status . xmlConvert($allData, "questions", "question") . "</response>";
-    print($returnResponse);
+    $status = '<status>success</status>';
+    $returnResponse =
+        '<response>' .
+        $status .
+        xmlConvert($allData, 'questions', 'question') .
+        '</response>';
+    print $returnResponse;
 }
 
 function update($connection, $body, $id)
@@ -46,8 +50,6 @@ function update($connection, $body, $id)
         <status>success</status>
         </response>";
     } else {
-
-
         echo "<response>
         <status>error</status>
         <message>
@@ -66,7 +68,6 @@ function delete($connection, $id)
         <status>success</status>
         </response>";
     } else {
-
         echo "<response>
         <status>error</status>
         <message>
@@ -95,7 +96,6 @@ function add($connection, $body)
     }
 }
 
-
 switch ($method) {
     case 'POST':
         $body = $_POST;
@@ -115,7 +115,7 @@ switch ($method) {
         $body = $_POST;
         update($connection, $body, $id);
         break;
-    case "DELETE":
+    case 'DELETE':
         $id = $_POST['id'];
         delete($connection, $id);
         break;

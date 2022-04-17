@@ -1,4 +1,4 @@
-<?php require_once '../../middleware/is_login.php' ?>
+<?php require_once '../../middleware/is_login.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +11,9 @@
 <body>
     <header>
         <img src="../../assets/logoASKTM.png">
-        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER[
+            'PHP_SELF'
+        ]; ?>">
             <input type="text" name="search" placeholder=" Cari jawaban untuk pertanyaan" class="inputSearch">
             <div class="wrap">
                 <div class="search">
@@ -19,14 +21,12 @@
                     <i class="fa fa-search"></i>
                 </div>
             </div>
-            <?php
-            if (isset($_POST['submit-search'])) {
+            <?php if (isset($_POST['submit-search'])) {
                 //Link belom diisi
-            }
-            ?>
+            } ?>
         </form>
         <h2 class="header">Ajukan Pertanyaan</h2>
-        <a href="Frame4.php">
+        <a href="/profile">
             <img src="../../assets/users_pic_profile/usericon.png" alt="profile" class="profileImageHeader">
         </a>
     </header>
@@ -39,14 +39,17 @@
             </div>
             <div class="isi">
                 <div class="sub-left">
-                    <form method="post" name="editProfile" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                        <?php
-                        require '../../db/index.php';
-
-                        ?>
-                        <h2>Preferensi<span class="tab"></span><input type="text" name="preferensi" value="<?= $_SESSION['users']['biodata'] ?>"></h2>
+                    <form method="post" name="editProfile" action="<?php echo $_SERVER[
+                        'PHP_SELF'
+                    ]; ?>">
+                        <?php require '../../db/index.php'; ?>
+                        <h2>Umur<span class="tab"></span><input type="text" name="preferensi" value="<?= $_SESSION[
+                            'users'
+                        ]['biodata'] ?>"></h2>
                         <hr style="color:#b4c5ff">
-                        <h2>EmailMu <span class="tab"></span> &nbsp; <input type="text" name="email" value="<?= $_SESSION['users']['email'] ?>"></h2>
+                        <h2>EmailMu <span class="tab"></span> &nbsp; <input type="text" name="email" value="<?= $_SESSION[
+                            'users'
+                        ]['email'] ?>"></h2>
                         <hr style="color:#b4c5ff">
                         <h2>Gambar Profil <span class="tab"></span> <input type="file" name="profImage"></h2>
                         <hr style="color:#b4c5ff">
@@ -55,25 +58,28 @@
                 </div>
                 <div class="sub-right">
                     <img src="../../assets/users_pic_profile/usericon.png" class="mt-5 img-circle" alt="avatar">
-                    <form method="post" name="toSubmit" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <form method="post" name="toSubmit" action="<?php echo $_SERVER[
+                        'PHP_SELF'
+                    ]; ?>">
                         <?php
-                        echo "<h2>Name goes here</h2><br>";
+                        echo '<h2>Name goes here</h2><br>';
                         echo '<input type="submit" name="submit" value="Simpan">';
                         if (isset($_POST['submit'])) {
-                            $username = $_POST["username"];
-                            $password = $_POST["password"];
-                            $email = $_POST["email"];
-                            $pic = $_POST["pic_profile"];
+                            $username = $_POST['username'];
+                            $password = $_POST['password'];
+                            $email = $_POST['email'];
+                            $pic = $_POST['pic_profile'];
                             $update = "UPDATE users SET username = '$username', password = '$password', email = '$email', pic_profile = '$pic' 
                         WHERE id = '$id'";
 
                             if (mysqli_multi_query($connection, $update)) {
                                 echo "\nData updated succesfully.";
                             } else {
-                                echo "Error: Could not able to execute $update" . mysqli_error($con);
+                                echo "Error: Could not able to execute $update" .
+                                    mysqli_error($con);
                             }
                             mysqli_close($connection);
-                        };
+                        }
                         ?>
                     </form>
                 </div>

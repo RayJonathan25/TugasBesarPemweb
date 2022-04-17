@@ -19,7 +19,9 @@
         <h1>Dari bertanya jadi<br>mengerti</h1>
         <p>Ask TOO MUCH, adalah platform bagi para pelajar<br>untuk saling membantu memberi ilmu pelajaran</p>
 
-        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER[
+            'PHP_SELF'
+        ]; ?>">
             <input type="text" name="search" placeholder="Apa pertanyaanmu?">
             <div class="wrap">
                 <div class="search">
@@ -34,7 +36,7 @@
         require './db/index.php';
 
         if (isset($_POST['submit'])) {
-            if ($_POST['search'] != "") {
+            if ($_POST['search'] != '') {
                 // INI KALO PENCET TOMBOL YANG ABU BULET, KEMANANYA JUGA BELOM
             }
         }

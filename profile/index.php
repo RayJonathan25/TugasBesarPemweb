@@ -1,4 +1,4 @@
-<?php require_once '../../middleware/is_login.php' ?>
+<?php require_once '../middleware/is_login.php'; ?>
 <!DOCTYPE html>
 <html>
 
@@ -43,7 +43,7 @@
                     </div>
 
                 </div>
-                <button type="submit" class="editprofile" onclick="location.href = 'frame6.php';">Edit
+                <button type="submit" class="editprofile" onclick="location.href = '/profile/edit';">Edit
                     Profile</b></button>
                 <div class="info-profile">
                     <p class="sub-judul">Keterangan</p>
@@ -52,7 +52,7 @@
                     <p><b class="info">Umur</b> </t> 19</p>
                     <p><b class="info">Bergabung</b> </t> date </p>
                 </div>
-                <button type="submit" class="logout" onclick="location.href = '#';">Logout</b></button>
+                <button type="submit" class="logout" onclick="location.href = '/logout';">Logout</b></button>
             </div>
 
 

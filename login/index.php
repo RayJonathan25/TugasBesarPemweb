@@ -1,4 +1,4 @@
-<?php require_once '../middleware/is_not_login.php' ?>
+<?php require_once '../middleware/is_not_login.php'; ?>
 
 <!DOCTYPE html>
 <html>
@@ -120,7 +120,10 @@
 									showConfirmButton: false
 								})
 								.then(function() {
-									// window.location.href = "profile.php";
+									setTimeout(() => {
+										window.location.href = "/main";
+									},3000)
+
 								});
 
 						} else {

@@ -1,4 +1,4 @@
-<?php require_once './middleware/is_not_login.php' ?>
+<?php require_once './middleware/is_not_login.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
     <header>
         <img src="../assets/logoASKTM.png" class="headerFlex">
         <div class="links">
-            <a href="login.php">Masuk</a><a href="register.php">Daftar</a><a href="#">Bertanya</a>
+            <a href="/login">Masuk</a><a href="/register">Daftar</a><a href="#">Bertanya</a>
             <!-- YANG BERTANYA BELOM DI ISI MAU KEMANANYA -->
         </div>
     </header>
@@ -21,7 +21,9 @@
         <h1>Dari bertanya jadi<br>mengerti</h1>
         <p>Ask TOO MUCH, adalah platform bagi para pelajar<br>untuk saling membantu memberi ilmu pelajaran</p>
 
-        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER[
+            'PHP_SELF'
+        ]; ?>">
             <input type="text" name="search" placeholder="Apa pertanyaanmu?">
             <div class="wrap">
                 <div class="search">
@@ -36,7 +38,7 @@
         require './db/index.php';
 
         if (isset($_POST['submit'])) {
-            if ($_POST['search'] != "") {
+            if ($_POST['search'] != '') {
                 // INI KALO PENCET TOMBOL YANG ABU BULET, KEMANANYA JUGA BELOM
             }
         }
