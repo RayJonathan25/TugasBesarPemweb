@@ -71,7 +71,9 @@ while ($data = mysqli_fetch_assoc($response)) {
     </ul>
     <span class="navbar-text"> 
         <a class="navbar-brand" href="/profile">
-    <img src="../assets/profile.png" width="30" height="30" alt="" >
+    <img src="../<?= $_SESSION['users'][
+        'pic_profile'
+    ] ?>" width="30" height="30" alt="" >
   </a>
     </span>
   </div>

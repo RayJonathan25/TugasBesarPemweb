@@ -21,17 +21,6 @@
         <h1>Dari bertanya jadi<br>mengerti</h1>
         <p>Ask TOO MUCH, adalah platform bagi para pelajar<br>untuk saling membantu memberi ilmu pelajaran</p>
 
-        <form method="post" name="searchPertanyaan" action="<?php echo $_SERVER[
-            'PHP_SELF'
-        ]; ?>">
-            <input type="text" name="search" placeholder="Apa pertanyaanmu?">
-            <div class="wrap">
-                <div class="search">
-                    <input type="submit" name="submit" class="searchButton" value="">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
-        </form>
 
         <img src="assets/meme1.jpg">
         <?php

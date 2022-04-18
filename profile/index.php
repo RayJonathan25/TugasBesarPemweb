@@ -39,17 +39,21 @@
             </ul>
             <span class="navbar-text">
                 <a class="navbar-brand" href="/profile">
-                    <img src="../<?= $_SESSION['users']['pic_profile'] ?>" width="30" height="30" alt="">
+                    <img src="../<?= $_SESSION['users'][
+                        'pic_profile'
+                    ] ?>" width="30" height="30" alt="">
                 </a>
             </span>
         </div>
     </nav>
-    <div class="frame6">
-        <div class="card">
+    <div class="frame6"  >
+        <div class="card" style="border:1px solid black; margin:20px;">
             <div class="profile">
-                <img src="../../assets/profile.png" alt="profile">
+                <img src="../../<?= $_SESSION['users'][
+                    'pic_profile'
+                ] ?>" alt="profile">
                 <div class="profile-data">
-                    <p>Manusia Setengah Salmon</p>
+                    <p><?= $_SESSION['users']['username'] ?></p>
                     <p class="umur"><?= $_SESSION['users']['age'] ?> Tahun</p>
                 </div>
 
@@ -58,9 +62,16 @@
                 Profile</b></button>
             <div class="info-profile">
                 <p class="sub-judul">Keterangan</p>
-                <p><b class="info">Email</b> </t> <?= $_SESSION['users']['email'] ?> </p>
-                <p><b class="info">Umur</b> </t> <?= $_SESSION['users']['age'] ?></p>
-                <p><b class="info">Bergabung</b> </t> <?= date("d M Y", strtotime($_SESSION['users']['created_at'])) ?> </p>
+                <p><b class="info">Email</b> </t> <?= $_SESSION['users'][
+                    'email'
+                ] ?> </p>
+                <p><b class="info">Umur</b> </t> <?= $_SESSION['users'][
+                    'age'
+                ] ?></p>
+                <p><b class="info">Bergabung</b> </t> <?= date(
+                    'd M Y',
+                    strtotime($_SESSION['users']['created_at'])
+                ) ?> </p>
             </div>
             <button type="submit" class="logout" onclick="location.href = '/logout';">Logout</b></button>
         </div>

@@ -35,7 +35,9 @@
             </ul>
             <span class="navbar-text">
                 <a class="navbar-brand" href="/profile">
-                    <img src="../<?= $_SESSION['users']['pic_profile'] ?>" width="30" height="30" alt="">
+                    <img src="../<?= $_SESSION['users'][
+                        'pic_profile'
+                    ] ?>" width="30" height="30" alt="">
                 </a>
             </span>
         </div>
@@ -60,14 +62,18 @@
             <div class="side-right">
                 <div class="card">
                     <div class="profile">
-                        <img src="../<?= $_SESSION['users']['pic_profile'] ?>" alt="profile">
+                        <img src="../<?= $_SESSION['users'][
+                            'pic_profile'
+                        ] ?>" alt="profile">
                         <div class="profile-data">
                             <p><?= $_SESSION['users']['username'] ?></p>
-                            <p class="umur"><?= $_SESSION['users']['age'] ?> Tahun</p>
+                            <p class="umur"><?= $_SESSION['users'][
+                                'age'
+                            ] ?> Tahun</p>
                         </div>
                     </div>
                     <div class="link-profile">
-                        <a href="#">Pertanyaan yang pernah dijawab ></a>
+                        <a href="/profile/">Pertanyaan yang pernah dijawab ></a>
                     </div>
                 </div>
             </div>
