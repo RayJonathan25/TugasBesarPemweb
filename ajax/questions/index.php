@@ -1,5 +1,6 @@
 <?php
 require_once '../../db/index.php';
+session_start();
 header('Content-Type: text/xml');
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -79,8 +80,12 @@ function delete($connection, $id)
 
 function add($connection, $body)
 {
-    $name = $body['name'];
-    $query = "INSERT INTO `questions`(`name`) VALUES ('$name')";
+    $questions = $body['questions'];
+    $user_id = $_SESSION['users']['id'];
+    $category_id = $body['category_id'];
+
+
+    $query = "INSERT INTO `questions`(`questions`,`user_id`,`category_id`) VALUES ('$questions','$user_id','$category_id')";
 
     if (mysqli_query($connection, $query)) {
         echo "<response>

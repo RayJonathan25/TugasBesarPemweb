@@ -1,4 +1,4 @@
-<?php require_once '../middleware/is_login.php'; ?> 
+<?php require_once '../middleware/is_login.php'; ?>
 <?php
 // session_destroy();
 ?>
@@ -10,8 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../assets/css/frame5.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Main Menu</title>
@@ -19,28 +18,28 @@
 
 <body>
     <nav class="navbar navbar-expand-lg " style='background-color:plum'>
-         <a class="navbar-brand" href="/">
-             <img src="../assets/logo.png" width="30" height="30" alt="" >
+        <a class="navbar-brand" href="/">
+            <img src="../assets/logo.png" width="30" height="30" alt="">
         </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    <div class="collapse navbar-collapse" id="navbarText"> 
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link text-dark" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                 <a class="nav-link text-dark" href="#" id="show-modal"> | Tanyakan Pertanyaan <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-    <span class="navbar-text"> 
-        <a class="navbar-brand" href="/profile">    
-    <img src="../assets/profile.png" width="30" height="30" alt="" >
-  </a>
-    </span>
-  </div>
-</nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-dark" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-dark" href="#" id="show-modal"> | Tanyakan Pertanyaan <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <a class="navbar-brand" href="/profile">
+                    <img src="../<?= $_SESSION['users']['pic_profile'] ?>" width="30" height="30" alt="">
+                </a>
+            </span>
+        </div>
+    </nav>
     <hr>
     <div class="group1">
         <div class="frame5">
@@ -61,14 +60,10 @@
             <div class="side-right">
                 <div class="card">
                     <div class="profile">
-                        <img src="../<?= $_SESSION['users'][
-                            'pic_profile'
-                        ] ?>" alt="profile">
+                        <img src="../<?= $_SESSION['users']['pic_profile'] ?>" alt="profile">
                         <div class="profile-data">
                             <p><?= $_SESSION['users']['username'] ?></p>
-                            <p class="umur"><?= $_SESSION['users'][
-                                'age'
-                            ] ?> Tahun</p>
+                            <p class="umur"><?= $_SESSION['users']['age'] ?> Tahun</p>
                         </div>
                     </div>
                     <div class="link-profile">
@@ -84,13 +79,10 @@
                     <p>Ajukan Pertanyaan</p>
                     <i class="fas fa-times icon-close" id="modal-close"></i>
                 </div>
-                <textarea></textarea>
-                <select>
-                    <option value="">Bahasa Sunda</option>
-                    <option value="">Bahasa Indonesia</option>
-                    <option value="">Bahasa Inggris</option>
+                <textarea id="questions"></textarea>
+                <select id="category-menu">
                 </select>
-                <button>TANYAKAN PERTANYAAMU</button>
+                <button onclick="addQuestion()">TANYAKAN PERTANYAAMU</button>
             </div>
         </div>
     </div>
@@ -160,6 +152,7 @@
         }
 
         function getdataCategory() {
+            $("#category-menu").html("");
             const request = $.ajax({
                 url: "/ajax/category",
                 method: "get",
@@ -177,6 +170,7 @@
 
 
                     $("#categories").append(`<h4 class="category" data-id="${id}">${name}</h4>`)
+                    $("#category-menu").append(`<option value="${id}">${name}</option>`);
                 }
 
                 $("#categories .category").click(function() {
@@ -190,7 +184,30 @@
             });
         }
 
+        function addQuestion() {
+            const category = $("#category-menu").val();
+            const question = $("#questions").val();
+            console.log(category, question);
+            if (category && question) {
+                console.log('hai');
+                const request = $.ajax({
+                    url: "/ajax/questions",
+                    method: "post",
+                    data: {
+                        category_id: category,
+                        questions: question
+                    }
+                });
 
+                request.done(function(response) {
+                    $("#modal-question").css("d-none")
+                    location.reload();
+
+                });
+            }
+
+
+        }
 
         $(document).ready(function() {
             getdataCategory();

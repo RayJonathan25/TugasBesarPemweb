@@ -5,7 +5,9 @@ body {
 	margin-left: 20px;
 }
 
-
+.border{
+	border-top: 2px solid black ;
+}
 
 .edit_profile {
 	margin-top: 50px;

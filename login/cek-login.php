@@ -25,6 +25,7 @@ if (isset($_POST['username'])) {
                 'biodata' => $row['biodata'],
                 'pic_profile' => $row['pic_profile'],
                 'age' => $row['age'],
+                'created_at' => $row['created_at']
             ];
 
             if (isset($_POST['remember'])) {
