@@ -21,7 +21,9 @@
     $age = $_POST['age'];
     $email = $_POST['email'];
     $id = $_SESSION['users']['id'];
-    $update = "UPDATE users SET age = '$age', email = '$email'";
+    $bio = $_POST['bios'];
+    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+    $update = "UPDATE users SET age = '$age', email = '$email',biodata='$bio', password='$pass'";
     if ($_FILES['profImage']['name']) {
         echo 'hereee';
         $update .= ", pic_profile = '$pic' ";
@@ -52,8 +54,8 @@
 <html lang="en">
 
 <head>
-    <title>Frame 6</title>
-    <link rel="stylesheet" href="../../assets/css/Frame6.css">
+    <title>Edit Profile </title>
+    <link rel="stylesheet" href="../../assets/css/EditProfile.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/frame5.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
@@ -108,7 +110,13 @@
                         ]['email'] ?>"></h2>
                         <hr style="color:#b4c5ff">
                         <h2>Gambar Profil <span class="tab"></span> <input type="file" name="profImage"></h2>
+                        <h2>Password<span class="tab"></span><input type="password" name="pass" ></h2>
                         <hr style="color:#b4c5ff">
+                        <hr style="color:#b4c5ff">
+                        <h2>Bio <span class="tab"></span> &nbsp; <textarea type="text" name="bios" ><?= $_SESSION[
+                            'users'
+                        ]['biodata'] ?></textarea></h2>
+                        
                 </div>
                 <div class="sub-right">
                     <img src="../../<?= $_SESSION['users'][

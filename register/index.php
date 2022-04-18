@@ -1,4 +1,4 @@
-<?php require_once '../middleware/is_not_login.php' ?>
+<?php require_once '../middleware/is_not_login.php'; ?>
 <html>
 
 <head>

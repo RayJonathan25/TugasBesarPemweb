@@ -20,7 +20,7 @@ function xmlConvert($datas, $parent_name, $name)
 
 function get($connection, $user_id)
 {
-    $query =  "SELECT answers.id as answerId,answers.answer,answers.question_id,answers.user_id,questions.id,questions.questions,questions.user_id,questions.category_id FROM answers LEFT JOIN questions ON answers.question_id=questions.id WHERE answers.user_id = '$user_id'";
+    $query = "SELECT answers.id as answerId,answers.answer,answers.question_id,answers.user_id,questions.id,questions.questions,questions.user_id,questions.category_id FROM answers LEFT JOIN questions ON answers.question_id=questions.id WHERE answers.user_id = '$user_id'";
 
     $response = mysqli_query($connection, $query);
     $allData = [];
@@ -40,8 +40,6 @@ function get($connection, $user_id)
 switch ($method) {
     case 'GET':
         $user_id = $_SESSION['users']['id'];
-
-
         get($connection, $user_id);
         break;
     default:

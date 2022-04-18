@@ -37,7 +37,7 @@
                 <a class="navbar-brand" href="/profile">
                     <img src="../<?= $_SESSION['users'][
                         'pic_profile'
-                    ] ?>" width="30" height="30" alt="">
+                    ] ?>" width="30" height="30" alt="" style="border-radius:50%; border:1px solid black">
                 </a>
             </span>
         </div>
@@ -64,7 +64,7 @@
                     <div class="profile">
                         <img src="../<?= $_SESSION['users'][
                             'pic_profile'
-                        ] ?>" alt="profile">
+                        ] ?>" alt="profile" style="border-radius:50%; border:1px solid black">
                         <div class="profile-data">
                             <p><?= $_SESSION['users']['username'] ?></p>
                             <p class="umur"><?= $_SESSION['users'][
@@ -135,7 +135,7 @@
 
                     $("#items").append(`<div class="item border-black-1">
                         <div class="profile">
-                            <img src="../${pict_profile}" alt="profile">
+                            <img src="../${pict_profile}" alt="profile" >
                             <div class="profile-subject">
                                 <h2 class="name">${username}</h2>
                                 <p class="subject">${categoryName}</p>

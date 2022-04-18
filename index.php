@@ -4,8 +4,8 @@
 <html lang="en">
 
 <head>
-    <title>Frame 2</title>
-    <link rel="stylesheet" href="../assets/css/Frame2.css">
+    <title>ASK TM</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Rozha+One&family=Rubik:wght@800&display=swap" rel="stylesheet">
 </head>
 
@@ -61,11 +61,11 @@
                 <h2>Contact Us</h2>
             </div>
             <div class="right">
-                <form>
-                    <input type="email" name="emailContactUs" id="emailContactUs" placeholder="Enter your email" /> <br>
-                    <textarea name="message" id="message" rows="4" cols="70"> Enter message :</textarea> <br>
-                    <input type="submit" value="Send Email" name="sendEmail" />
-                </form>
+            <form>
+                 <input type="email" name="myEmail" id="myEmail" placeholder="Enter your email" /> <br>
+                 <textarea name="message" id="message" rows="2" cols="50"> Enter message :</textarea> <br>
+                 <input type="submit" value="Send Email" name="sendEmail" onclick="sendEmail()"/>
+             </form>
             </div>
         </div>
 

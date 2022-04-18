@@ -1,7 +1,11 @@
 <?php
+
 session_start();
 
 session_destroy();
 
-header('Location: /login');
+setcookie('login', '', 1);
+
+header('location:/login');
+
 ?>

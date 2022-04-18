@@ -25,7 +25,7 @@ if (isset($_POST['username'])) {
                 'biodata' => $row['biodata'],
                 'pic_profile' => $row['pic_profile'],
                 'age' => $row['age'],
-                'created_at' => $row['created_at']
+                'created_at' => $row['created_at'],
             ];
 
             if (isset($_POST['remember'])) {
@@ -40,11 +40,9 @@ if (isset($_POST['username'])) {
 
             echo 'success';
         } else {
-            echo 'ERROR';
+            echo 'error';
         }
     } else {
-        echo print_r($num_row);
+        header('location: /login');
     }
-} else {
-    header('location: /login');
 }

@@ -38,28 +38,31 @@
                 </li>
             </ul>
             <span class="navbar-text">
-                <a class="navbar-brand" href="/profile">
+                <a class="navbar-brand" href="/profile" >
                     <img src="../<?= $_SESSION['users'][
                         'pic_profile'
-                    ] ?>" width="30" height="30" alt="">
+                    ] ?>" width="30" height="30"  style="border-radius:50%" alt="">
                 </a>
             </span>
         </div>
     </nav>
-    <div class="frame6"  >
+    <div class="framekanan"  >
         <div class="card" style="border:1px solid black; margin:20px;">
             <div class="profile">
                 <img src="../../<?= $_SESSION['users'][
                     'pic_profile'
-                ] ?>" alt="profile">
+                ] ?>" alt="profile" style="border-radius:50%; border:1px solid black">
                 <div class="profile-data">
-                    <p><?= $_SESSION['users']['username'] ?></p>
+                    <p><b><?= $_SESSION['users']['username'] ?></b></p>
                     <p class="umur"><?= $_SESSION['users']['age'] ?> Tahun</p>
+                    <p><?= $_SESSION['users']['biodata'] ?></p>
                 </div>
-
             </div>
+            
             <button type="submit" class="editprofile" onclick="location.href = '/profile/edit';">Edit
                 Profile</b></button>
+
+            
             <div class="info-profile">
                 <p class="sub-judul">Keterangan</p>
                 <p><b class="info">Email</b> </t> <?= $_SESSION['users'][
