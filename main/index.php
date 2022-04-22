@@ -132,7 +132,6 @@
                     const questions = element.find("questions").text();
                     const pict_profile = element.find("pic_profile").text();
 
-
                     $("#items").append(`<div class="item border-black-1">
                         <div class="profile">
                             <img src="../${pict_profile}" alt="profile" >
@@ -173,8 +172,6 @@
                     const name = element.find("name").text();
                     const created_at = element.find("created_at").text();
                     const updated_at = element.find("updated_at").text();
-
-
                     $("#categories").append(`<h4 class="category" data-id="${id}">${name}</h4>`)
                     $("#category-menu").append(`<option value="${id}">${name}</option>`);
                 }

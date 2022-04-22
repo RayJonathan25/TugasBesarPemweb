@@ -1,19 +1,19 @@
-<?php require_once 'middleware/is_not_login.php'; ?>
+<?php require_once './middleware/is_not_login.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>ASK TM</title>
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Rozha+One&family=Rubik:wght@800&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <img src="./assets/logoASKTM.png" class="headerFlex">
+        <img src="../assets/logoASKTM.png" class="headerFlex">
         <div class="links">
-            <a href="./login">Masuk</a><a href="./register">Daftar</a>
+            <a href="/login">Masuk</a><a href="register">Daftar</a>
             <!-- YANG BERTANYA BELOM DI ISI MAU KEMANANYA -->
         </div>
     </header>
@@ -22,9 +22,9 @@
         <p>Ask TOO MUCH, adalah platform bagi para pelajar<br>untuk saling membantu memberi ilmu pelajaran</p>
 
 
-        <img src="assets/meme1.jpg">
+        <img src="../assets/meme1.jpg">
         <?php
-        require 'db/index.php';
+        require '../db/index.php';
 
         if (isset($_POST['submit'])) {
             if ($_POST['search'] != '') {

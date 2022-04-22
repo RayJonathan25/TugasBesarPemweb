@@ -191,7 +191,7 @@
 					document.getElementById(pTo).innerHTML = xmlhttp.responseText;
 				}
 			}
-			xmlhttp.open("GET", pageTo + "?q=" + str, true);
+			xmlhttp.open("GET", pageTo + "?q=" + str, true); 
 			xmlhttp.send();
 		}
 	</script>

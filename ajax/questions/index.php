@@ -84,7 +84,6 @@ function add($connection, $body)
     $user_id = $_SESSION['users']['id'];
     $category_id = $body['category_id'];
 
-
     $query = "INSERT INTO `questions`(`questions`,`user_id`,`category_id`) VALUES ('$questions','$user_id','$category_id')";
 
     if (mysqli_query($connection, $query)) {

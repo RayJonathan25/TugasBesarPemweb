@@ -36,7 +36,7 @@
 		<br>
 
 		<p> Belum punya akun ?
-			<a href="/register"> <strong> DAFTAR !</strong> </a>
+			<a href="../register"> <strong> DAFTAR !</strong> </a>
 		</p>
 	</main>
 
@@ -101,7 +101,7 @@
 
 			} else {
 				$.ajax({
-					url: "/login/cek-login.php",
+					url: "../login/cek-login.php",
 					type: "POST",
 					data: {
 						"username": username,

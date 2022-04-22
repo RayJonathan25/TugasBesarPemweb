@@ -1,6 +1,6 @@
 <?php
 
-include '../db/index.php';
+include './db/index.php';
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
@@ -31,5 +31,5 @@ if (isset($_POST['email'])) {
         echo 'cannot';
     }
 } else {
-    header('Location: /register');
+    header('Location: ./register');
 }
